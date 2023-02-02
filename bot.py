@@ -21,7 +21,7 @@ reddit = praw.Reddit("bot")
 
 # pylint: disable-next=too-many-branches
 def handle_stream(i = None, reply = None):
-    """handle_stream function implements the function which 
+    """handle_stream function implements the function which
     will handle the inbox stream of mentions and reply to them.
     """
     # pylint: disable-next=too-many-nested-blocks
