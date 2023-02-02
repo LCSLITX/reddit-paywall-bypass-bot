@@ -1,4 +1,4 @@
-
+"""Module bot. Implement BOT itself."""
 
 import logging
 from urllib.error import HTTPError
@@ -21,7 +21,11 @@ for logger_name in ("praw", "prawcore"):
 reddit = praw.Reddit("bot")
 
 
+# pylint: disable-next=too-many-branches,too-many-nested-blocks
 def handle_stream(i = None, reply = None):
+    """handle_stream function implements the function which 
+    will handle the inbox stream of mentions and reply to them.
+    """
     if i is None:
         for item in reddit.inbox.stream():
           try:

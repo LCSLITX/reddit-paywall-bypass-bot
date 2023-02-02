@@ -1,3 +1,6 @@
+"""Module templates. Provides all templates to be used by BOT."""
+
+
 # the indentation is intentional.
 # The string should not use tabs to not broke markdown text when sent with request.
 DYNAMIC_TEMPLATE = "Beep Beep. I'm a BOT who doesn't like Paywalls. 🤖 \n \
