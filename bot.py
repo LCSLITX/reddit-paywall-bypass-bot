@@ -1,5 +1,4 @@
 """Module bot. Implement BOT itself."""
-
 import logging
 from urllib.error import HTTPError
 import praw
@@ -7,7 +6,6 @@ import prawcore
 from praw.models import Comment
 import templates
 import utils
-
 
 
 handler = logging.StreamHandler()
