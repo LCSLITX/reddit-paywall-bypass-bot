@@ -1,11 +1,13 @@
+
+
 import logging
+from urllib.error import HTTPError
 import praw
 import prawcore
+from praw.models import Comment
 import templates
 import utils
 
-from praw.models import Comment
-from urllib.error import HTTPError
 
 
 handler = logging.StreamHandler()
@@ -35,12 +37,12 @@ def handle_stream(i = None, reply = None):
           # print(f"[PARENT_ID (Submission): {splitted[0]}_{splitted[1]}] - [AUTHOR: {item.author}] - [ID: {item.id}] - [BODY: {item.body}]")
           parent_submission = reddit.submission(splitted[1])
 
-          if parent_submission.is_self == False:
-            firstLink = templates.first_option.format(parent_submission.url)
-            secondLink = templates.second_option.format(parent_submission.url)
-            reply_text = templates.fixed_template.format(firstLink, secondLink)
+          if not parent_submission.is_self:
+            first_link = templates.FIRST_OPTION.format(parent_submission.url)
+            second_link = templates.SECOND_OPTION.format(parent_submission.url)
+            reply_text = templates.FIXED_TEMPLATE.format(first_link, second_link)
             res = item.reply(reply_text)
-            if not res == None:
+            if not res is None:
               print("[REPLY_ID]:", res)
               print(f"\n")
 
@@ -48,7 +50,7 @@ def handle_stream(i = None, reply = None):
             list = utils.regex_find(parent_submission.selftext)
             reply_text = utils.build_reply_text(list)
             res = item.reply(reply_text)
-            if not res == None:
+            if not res is None:
               print("[REPLY_ID]:", res)
               print(f"\n")
 
@@ -60,7 +62,7 @@ def handle_stream(i = None, reply = None):
           list = utils.regex_find(parent_comment.body)
           reply_text = utils.build_reply_text(list)
           res = item.reply(reply_text)
-          if not res == None:
+          if not res is None:
             print("[REPLY_ID]:", res)
             print(f"\n")
 
@@ -77,6 +79,6 @@ def handle_stream(i = None, reply = None):
         item.mark_read()
   else:
     res = i.reply(reply)
-    if not res == None:
+    if not res is None:
       print("[REPLY_ID]:", res)
       print(f"\n")
