@@ -53,7 +53,6 @@ def handle_stream(i = None, reply = None):
                       res = item.reply(reply_text)
                       if not res is None:
                           print("[REPLY_ID]:", res)
-                          print(f"\n")
 
                   else:
                       list = utils.regex_find(parent_submission.selftext)
@@ -61,7 +60,6 @@ def handle_stream(i = None, reply = None):
                       res = item.reply(reply_text)
                       if not res is None:
                           print("[REPLY_ID]:", res)
-                          print(f"\n")
 
               # t1 means its parent is a comment.
               if splitted[0] == "t1":
@@ -78,13 +76,11 @@ def handle_stream(i = None, reply = None):
                   res = item.reply(reply_text)
                   if not res is None:
                       print("[REPLY_ID]:", res)
-                      print(f"\n")
 
           except HTTPError as err:
               print(err)
           except prawcore.exceptions.Forbidden as err:
               print(err)
-              print(f"\n")
               continue
           except praw.exceptions.RedditAPIException as err:
               print(err)
@@ -95,4 +91,3 @@ def handle_stream(i = None, reply = None):
         res = i.reply(reply)
         if not res is None:
             print("[REPLY_ID]:", res)
-            print(f"\n")
