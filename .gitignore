@@ -1,6 +1,11 @@
 **/*.ini
 .vscode
 
+.pytest_cache
+
+#venv
+reddit-bypass-paywall-bot/
+
 # Distribution / packaging
 .Python
 build/
