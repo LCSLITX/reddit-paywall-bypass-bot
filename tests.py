@@ -5,7 +5,7 @@ import utils
 # integration test of utils
 def test_regex_find():
     """test_regex_find function tests regex_find() functionality."""
-    # pylint: disable-next=line-too-long
+    # pylint: disable=line-too-long
     self_text = r"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porta luctus tempor. Pellentesque consectetur imperdiet vestibulum. Integer eget orci sit amet est porta sagittis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus eu nibh lobortis, porta nulla eu, porta urna. Nunc purus sapien, imperdiet id ipsum vel, ultricies vehicula ex. Donec metus diam, varius porta odio condimentum, pellentesque posuere lacus. Vestibulum vel mauris pretium, congue tellus quis, congue mauris. Mauris non diam pharetra, dignissim nunc id, laoreet risus. Curabitur euismod nunc nec sagittis congue.\
     \
     Donec ut felis ac quam sagittis bibendum. Curabitur aliquam pharetra nulla a ullamcorper. Ut dictum pretium dolor, id faucibus elit. Quisque id velit non odio vulputate bibendum eget ut mauris. Nam vitae leo ut magna dapibus pulvinar in vulputate tortor. Maecenas pellentesque ex quis purus pulvinar, ut cursus augue blandit. Sed a purus aliquet nisl rhoncus placerat. Fusce sit amet dapibus arcu. Donec nisl lorem, sollicitudin facilisis sollicitudin tempus, fringilla ut turpis.\
@@ -26,4 +26,5 @@ def test_regex_find():
         # "https://praw.readthedocs.io/en/stable/",
     ]
 
+    # pylint: enable=line-too-long
     assert utils.regex_find(self_text) == expected
