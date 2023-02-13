@@ -1,12 +1,16 @@
 """Module bot. Implement BOT itself."""
 import logging
 from urllib.error import HTTPError
+import configparser
+import os
 import praw
 import prawcore
 from praw.models import Comment
 import templates
 import utils
 
+config = configparser.ConfigParser()
+config.read('praw.ini')
 
 handler = logging.StreamHandler()
 handler.setLevel(logging.DEBUG)
@@ -16,7 +20,14 @@ for logger_name in ("praw", "prawcore"):
     logger.addHandler(handler)
 
 
-reddit = praw.Reddit("bot")
+reddit = praw.Reddit(
+    client_id=config.get("bot", "REDDIT_CLIENT_ID", vars=os.environ),
+    client_secret=config.get("bot", "REDDIT_CLIENT_SECRET", vars=os.environ),
+    username=config.get("bot", "REDDIT_USERNAME", vars=os.environ),
+    password=config.get("bot", "REDDIT_PASSWORD", vars=os.environ),
+    user_agent="USER_AGENT",
+    rate_limit=300
+    )
 
 
 # pylint: disable-next=too-many-branches
