@@ -1,5 +1,4 @@
 """Module bot. Implement BOT itself."""
-import logging
 from urllib.error import HTTPError
 import configparser
 import os
@@ -9,25 +8,15 @@ from praw.models import Comment
 import templates
 import utils
 
+
 config = configparser.ConfigParser()
 config.read('praw.ini')
 
-def debug_mode():
-    """debug_mode function implements the function which
-    will activate and log info for when mode bool is set to True.
-    """
-    print("DEBUG_MODE:", config.get("DEFAULT", "DEBUG_MODE", vars=os.environ))
-    if config.get("DEFAULT", "DEBUG_MODE", vars=os.environ) != "True":
-        return
 
-    handler = logging.StreamHandler()
-    handler.setLevel(logging.DEBUG)
-    for logger_name in ("praw", "prawcore"):
-        logger = logging.getLogger(logger_name)
-        logger.setLevel(logging.DEBUG)
-        logger.addHandler(handler)
+print("DEBUG_MODE:", config.get("DEFAULT", "DEBUG_MODE", vars=os.environ))
+if config.get("DEFAULT", "DEBUG_MODE", vars=os.environ) == "True":
+    utils.debug_mode()
 
-debug_mode()
 
 reddit = praw.Reddit(
     client_id=config.get("BOT", "REDDIT_CLIENT_ID", vars=os.environ),
@@ -69,7 +58,7 @@ def handle_stream(i = None, reply = None):
                     else:
                         first_link = templates.FIRST_OPTION.format(parent_submission.url)
                         second_link = templates.SECOND_OPTION.format(parent_submission.url)
-                        reply_text = templates.FIXED_TEMPLATE.format(first_link, second_link)
+                        reply_text = templates.NOT_SELFTEXT_TEMPLATE.format(first_link, second_link)
                         res = item.reply(reply_text)
                         if not res is None:
                             print("[REPLY_ID]:", res)
