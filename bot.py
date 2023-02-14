@@ -58,18 +58,18 @@ def handle_stream(i = None, reply = None):
                 # t3 means it is a top level comment, its parent is a submission.
                 if splitted[0] == "t3":
                     parent_submission = reddit.submission(splitted[1])
-
-                    if not parent_submission.is_self:
-                        first_link = templates.FIRST_OPTION.format(parent_submission.url)
-                        second_link = templates.SECOND_OPTION.format(parent_submission.url)
-                        reply_text = templates.FIXED_TEMPLATE.format(first_link, second_link)
+                    # is_self is true when submission have self_text.
+                    if parent_submission.is_self:
+                        no_link_list = utils.regex_find_markdown_link(parent_submission.selftext)
+                        link_list = utils.regex_find_url(no_link_list)
+                        reply_text = utils.build_reply_text(link_list)
                         res = item.reply(reply_text)
                         if not res is None:
                             print("[REPLY_ID]:", res)
-
                     else:
-                        link_list = utils.regex_find(parent_submission.selftext)
-                        reply_text = utils.build_reply_text(link_list)
+                        first_link = templates.FIRST_OPTION.format(parent_submission.url)
+                        second_link = templates.SECOND_OPTION.format(parent_submission.url)
+                        reply_text = templates.FIXED_TEMPLATE.format(first_link, second_link)
                         res = item.reply(reply_text)
                         if not res is None:
                             print("[REPLY_ID]:", res)
@@ -78,7 +78,8 @@ def handle_stream(i = None, reply = None):
                 if splitted[0] == "t1":
                     parent_comment = reddit.comment(splitted[1])
 
-                    link_list = utils.regex_find(parent_comment.body)
+                    no_link_list = utils.regex_find_markdown_link(parent_comment.body)
+                    link_list = utils.regex_find_url(no_link_list)
                     reply_text = utils.build_reply_text(link_list)
                     res = item.reply(reply_text)
                     if not res is None:
