@@ -1,6 +1,7 @@
 
 """Module utils. Provides utilitary functions."""
 import re
+import logging
 import templates
 
 
@@ -25,7 +26,7 @@ def regex_find_url(markdown_link_list):
 
 def build_reply_text(link_list):
     """build_reply_text function builds a string to be used as a reply text."""
-    reply_text = templates.DYNAMIC_TEMPLATE
+    reply_text = templates.SELFTEXT_TEMPLATE
     for index, url in enumerate(link_list):
         if index >= 3:
             reply_text += templates.MANY_LINKS_TEMPLATE
@@ -36,3 +37,15 @@ def build_reply_text(link_list):
 "
     reply_text += templates.BYE_BYE_TEMPLATE
     return reply_text
+
+
+def debug_mode():
+    """debug_mode function implements the function which
+    will activate and log info for when mode bool is set to True.
+    """
+    handler = logging.StreamHandler()
+    handler.setLevel(logging.DEBUG)
+    for logger_name in ("praw", "prawcore"):
+        logger = logging.getLogger(logger_name)
+        logger.setLevel(logging.DEBUG)
+        logger.addHandler(handler)

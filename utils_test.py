@@ -56,7 +56,7 @@ def test_build_reply_text():
 \n\
 3º Link: [First Option](https://12ft.io/https://praw.readthedocs.io/en/stable/); [Second Option](https://www.removepaywall.com/https://praw.readthedocs.io/en/stable/)\n\
 \n"
-    expected1 = f"{templates.DYNAMIC_TEMPLATE}{expected_links1}{templates.BYE_BYE_TEMPLATE}"
+    expected1 = f"{templates.SELFTEXT_TEMPLATE}{expected_links1}{templates.BYE_BYE_TEMPLATE}"
     no_link_list = utils.regex_find_markdown_link(SELFTEXT_WITH_THREE_LINKS)
     link_list = utils.regex_find_url(no_link_list)
     reply_text = utils.build_reply_text(link_list)
@@ -70,7 +70,7 @@ def test_build_reply_text():
 \n\
 I verified that there are more links, but I can only bypass three. Good luck with the rest.\n\
 \n"
-    expected2 = f"{templates.DYNAMIC_TEMPLATE}{expected_links2}{templates.BYE_BYE_TEMPLATE}"
+    expected2 = f"{templates.SELFTEXT_TEMPLATE}{expected_links2}{templates.BYE_BYE_TEMPLATE}"
     no_link_list = utils.regex_find_markdown_link(SELFTEXT_WITH_FOUR_LINKS)
     link_list = utils.regex_find_url(no_link_list)
     reply_text = utils.build_reply_text(link_list)

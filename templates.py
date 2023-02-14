@@ -3,7 +3,7 @@
 
 # the indentation is intentional.
 # The string should not use tabs to not broke markdown text when sent with request.
-DYNAMIC_TEMPLATE = "Beep Beep. I'm a BOT who doesn't like Paywalls. 🤖\n\
+SELFTEXT_TEMPLATE = "Beep Beep. I'm a BOT who doesn't like Paywalls. 🤖\n\
 \n\
 I do provide alternative links so you can read your news or articles without those annoying things.\n\
 \n\
@@ -13,7 +13,7 @@ Here are your links:\
 "
 # the indentation is intentional.
 # The string should not use tabs to not broke markdown text when sent with request.
-FIXED_TEMPLATE = "Beep Beep. I'm a BOT who doesn't like Paywalls. 🤖\n\
+NOT_SELFTEXT_TEMPLATE = "Beep Beep. I'm a BOT who doesn't like Paywalls. 🤖\n\
 \n\
 I do provide alternative links so you can read your news or articles without those annoying things.\n\
 \n\
