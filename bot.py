@@ -12,19 +12,28 @@ import utils
 config = configparser.ConfigParser()
 config.read('praw.ini')
 
-handler = logging.StreamHandler()
-handler.setLevel(logging.DEBUG)
-for logger_name in ("praw", "prawcore"):
-    logger = logging.getLogger(logger_name)
-    logger.setLevel(logging.DEBUG)
-    logger.addHandler(handler)
+def debug_mode():
+    """debug_mode function implements the function which
+    will activate and log info for when mode bool is set to True.
+    """
+    print("DEBUG_MODE:", config.get("DEFAULT", "DEBUG_MODE", vars=os.environ))
+    if config.get("DEFAULT", "DEBUG_MODE", vars=os.environ) != "True":
+        return
 
+    handler = logging.StreamHandler()
+    handler.setLevel(logging.DEBUG)
+    for logger_name in ("praw", "prawcore"):
+        logger = logging.getLogger(logger_name)
+        logger.setLevel(logging.DEBUG)
+        logger.addHandler(handler)
+
+debug_mode()
 
 reddit = praw.Reddit(
-    client_id=config.get("bot", "REDDIT_CLIENT_ID", vars=os.environ),
-    client_secret=config.get("bot", "REDDIT_CLIENT_SECRET", vars=os.environ),
-    username=config.get("bot", "REDDIT_USERNAME", vars=os.environ),
-    password=config.get("bot", "REDDIT_PASSWORD", vars=os.environ),
+    client_id=config.get("BOT", "REDDIT_CLIENT_ID", vars=os.environ),
+    client_secret=config.get("BOT", "REDDIT_CLIENT_SECRET", vars=os.environ),
+    username=config.get("BOT", "REDDIT_USERNAME", vars=os.environ),
+    password=config.get("BOT", "REDDIT_PASSWORD", vars=os.environ),
     user_agent="USER_AGENT",
     rate_limit=300
     )
@@ -48,12 +57,6 @@ def handle_stream(i = None, reply = None):
 
                 # t3 means it is a top level comment, its parent is a submission.
                 if splitted[0] == "t3":
-                    # print(
-                      # f"[PARENT_ID (Submission): {splitted[0]}_{splitted[1]}]
-                      # [AUTHOR: {item.author}]
-                      # [ID: {item.id}]
-                      # [BODY: {item.body}]"
-                    # )
                     parent_submission = reddit.submission(splitted[1])
 
                     if not parent_submission.is_self:
@@ -73,12 +76,6 @@ def handle_stream(i = None, reply = None):
 
                 # t1 means its parent is a comment.
                 if splitted[0] == "t1":
-                    # print(
-                      # f"[PARENT_ID (Comment): {splitted[0]}_{splitted[1]}]
-                      # [AUTHOR: {item.author}]
-                      # [ID: {item.id}]
-                      # [BODY: {item.body}]"
-                    # )
                     parent_comment = reddit.comment(splitted[1])
 
                     link_list = utils.regex_find(parent_comment.body)
