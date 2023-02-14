@@ -15,7 +15,7 @@ def regex_find_url(markdown_link_list):
     """regex_find_url function checks a list of mardown formatted links
     and returns a list with only URLs.
     """
-    link_list = list()
+    link_list = []
     for url in markdown_link_list:
         matched_md = re.search(templates.REGEX_PATTERN_URL, url)
         link = matched_md.group().lstrip("(").rstrip(")")
