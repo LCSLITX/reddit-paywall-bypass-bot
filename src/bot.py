@@ -5,8 +5,8 @@ import os
 import praw
 import prawcore
 from praw.models import Comment
-import templates
-import utils
+import src.templates as templates
+import src.utils as utils
 
 
 config = configparser.ConfigParser()
