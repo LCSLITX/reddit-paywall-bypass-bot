@@ -21,6 +21,8 @@ SELFTEXT_WITH_FOUR_LINKS = r"Donec quis justo sed elit pellentesque tristique. P
 \
 [PRAW](https://praw.readthedocs.io/en/stable/)"
 
+SELFTEXT_WITHOUT_LINKS = "Donec quis justo sed elit pellentesque tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In ut blandit nibh, et pharetra ex."
+
 expected_markdown_links = [
     r"[**Lorem Ipsum**](https://www.lipsum.com/)",
     r"[https://www.reddit.com/r/worldnews/comments/10ri0wu/hacker\_group\_releases\_128gb\_of\_data\_showing/](https://www.reddit.com/r/worldnews/comments/10ri0wu/hacker_group_releases_128gb_of_data_showing/)",
@@ -57,10 +59,10 @@ def test_build_reply_text():
 3º Link: [First Option](https://12ft.io/https://praw.readthedocs.io/en/stable/); [Second Option](https://www.removepaywall.com/https://praw.readthedocs.io/en/stable/)\n\
 \n"
     expected1 = f"{templates.SELFTEXT_TEMPLATE}{expected_links1}{templates.BYE_BYE_TEMPLATE}"
-    no_link_list = utils.regex_find_markdown_link(SELFTEXT_WITH_THREE_LINKS)
-    link_list = utils.regex_find_url(no_link_list)
-    reply_text = utils.build_reply_text(link_list)
-    assert reply_text == expected1
+    no_link_list1 = utils.regex_find_markdown_link(SELFTEXT_WITH_THREE_LINKS)
+    link_list1 = utils.regex_find_url(no_link_list1)
+    reply_text1 = utils.build_reply_text(link_list1)
+    assert reply_text1 == expected1
 
     expected_links2 = "1º Link: [First Option](https://12ft.io/https://www.lipsum.com/); [Second Option](https://www.removepaywall.com/https://www.lipsum.com/)\n\
 \n\
@@ -71,9 +73,14 @@ def test_build_reply_text():
 I verified that there are more links, but I can only bypass three. Good luck with the rest.\n\
 \n"
     expected2 = f"{templates.SELFTEXT_TEMPLATE}{expected_links2}{templates.BYE_BYE_TEMPLATE}"
-    no_link_list = utils.regex_find_markdown_link(SELFTEXT_WITH_FOUR_LINKS)
-    link_list = utils.regex_find_url(no_link_list)
-    reply_text = utils.build_reply_text(link_list)
-    assert reply_text == expected2
+    no_link_list2 = utils.regex_find_markdown_link(SELFTEXT_WITH_FOUR_LINKS)
+    link_list2 = utils.regex_find_url(no_link_list2)
+    reply_text2 = utils.build_reply_text(link_list2)
+    assert reply_text2 == expected2
+
+    no_link_list3 = utils.regex_find_markdown_link(SELFTEXT_WITHOUT_LINKS)
+    link_list3 = utils.regex_find_url(no_link_list3)
+    reply_text3 = utils.build_reply_text(link_list3)
+    assert reply_text3 == templates.NO_LINKS_TEMPLATE
 
 # pylint: enable=line-too-long

@@ -34,6 +34,14 @@ MANY_LINKS_TEMPLATE = "I verified that there are more links, but I can only bypa
 
 BYE_BYE_TEMPLATE = "Beep beep. Bye."
 
+NO_LINKS_TEMPLATE = "Beep Beep. I'm a BOT who doesn't like Paywalls. 🤖\n\
+\n\
+I do provide alternative links so you can read your news or articles without those annoying things.\n\
+\n\
+Unfortunately, I didn't find any links to bypass.\n\
+\n\
+Beep beep. Bye."
+
 FIRST_OPTION = "[First option](https://12ft.io/{})"
 SECOND_OPTION = "[Second option](https://www.removepaywall.com/{})"
 
