@@ -2,7 +2,7 @@
 """Module utils. Provides utilitary functions."""
 import re
 import logging
-from src import templates
+import templates
 
 
 def regex_find_markdown_link(text):
