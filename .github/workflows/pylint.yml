@@ -22,4 +22,5 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         echo "[MASTER]\ninit-hook='import sys; sys.path.append(\".\")'" | cat > ./.pylintrc
+        which pylint
         pylint $(git ls-files '*.py') --rcfile=./.pylintrc
