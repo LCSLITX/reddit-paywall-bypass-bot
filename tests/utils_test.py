@@ -1,6 +1,6 @@
-"""tests.py provides tests to whole project."""
-import utils
-import templates
+"""utils_test.py provides tests to utils module."""
+from src import templates
+from src import utils
 
 # pylint: disable=line-too-long
 SELFTEXT_WITH_THREE_LINKS = r"Donec quis justo sed elit pellentesque tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In ut blandit nibh, et pharetra ex.\

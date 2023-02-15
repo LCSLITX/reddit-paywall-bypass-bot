@@ -5,9 +5,8 @@ import os
 import praw
 import prawcore
 from praw.models import Comment
-import templates
-import utils
-
+from src import templates
+from src import utils
 
 config = configparser.ConfigParser()
 config.read('praw.ini')
