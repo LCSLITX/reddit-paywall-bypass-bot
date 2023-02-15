@@ -13,16 +13,16 @@ config = configparser.ConfigParser()
 config.read('praw.ini')
 
 
-print("DEBUG_MODE:", config.get("DEFAULT", "DEBUG_MODE", vars=os.environ))
-if config.get("DEFAULT", "DEBUG_MODE", vars=os.environ) == "True":
+print("DEBUG_MODE:", config.get("DEFAULT", "REDDIT_BOT_DEBUG_MODE", vars=os.environ))
+if config.get("DEFAULT", "REDDIT_BOT_DEBUG_MODE", vars=os.environ) == "True":
     utils.debug_mode()
 
 
 reddit = praw.Reddit(
-    client_id=config.get("BOT", "REDDIT_CLIENT_ID", vars=os.environ),
-    client_secret=config.get("BOT", "REDDIT_CLIENT_SECRET", vars=os.environ),
-    username=config.get("BOT", "REDDIT_USERNAME", vars=os.environ),
-    password=config.get("BOT", "REDDIT_PASSWORD", vars=os.environ),
+    client_id=config.get("BOT", "REDDIT_BOT_CLIENT_ID", vars=os.environ),
+    client_secret=config.get("BOT", "REDDIT_BOT_CLIENT_SECRET", vars=os.environ),
+    username=config.get("BOT", "REDDIT_BOT_USERNAME", vars=os.environ),
+    password=config.get("BOT", "REDDIT_BOT_PASSWORD", vars=os.environ),
     user_agent="USER_AGENT",
     rate_limit=300
     )

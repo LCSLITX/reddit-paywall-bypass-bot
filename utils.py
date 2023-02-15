@@ -26,6 +26,8 @@ def regex_find_url(markdown_link_list):
 
 def build_reply_text(link_list):
     """build_reply_text function builds a string to be used as a reply text."""
+    if len(link_list) == 0:
+        return templates.NO_LINKS_TEMPLATE
     reply_text = templates.SELFTEXT_TEMPLATE
     for index, url in enumerate(link_list):
         if index >= 3:
