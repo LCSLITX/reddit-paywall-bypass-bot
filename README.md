@@ -1,4 +1,4 @@
-# Bypass Paywall BOT
+# Paywall Bypass BOT
 
 This project is a BOT for [Reddit](https://www.reddit.com).
 
