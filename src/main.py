@@ -1,4 +1,4 @@
 """Module main. Executes handle_stream function."""
-import src.bot as bot
+from src import bot
 
 bot.handle_stream()
