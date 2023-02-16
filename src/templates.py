@@ -47,8 +47,8 @@ Beep beep. Bye."
 
 
 # PAYWALL BYPASS PROVIDERS
-FIRST_OPTION = "[First option](https://12ft.io/{})"
-SECOND_OPTION = "[Second option](https://www.removepaywall.com/{})"
+FIRST_OPTION = "[First Option](https://12ft.io/{})"
+SECOND_OPTION = "[Second Option](https://www.removepaywall.com/{})"
 
 
 # REGEX PATTERNS
