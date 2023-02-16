@@ -38,16 +38,16 @@ expected_urls = [
 
 def test_regex_find_markdown_link():
     """test_regex_find_markdown_link function tests regex_find_markdown_link() functionality."""
-    for index, elem in enumerate(utils.regex_find_markdown_link(SELFTEXT_WITH_THREE_LINKS)):
+    for index, elem in enumerate(utils.regex_get_markdown_links(SELFTEXT_WITH_THREE_LINKS)):
         assert f"{elem}" == expected_markdown_links[index]
-    assert utils.regex_find_markdown_link(SELFTEXT_WITH_THREE_LINKS) == expected_markdown_links
+    assert utils.regex_get_markdown_links(SELFTEXT_WITH_THREE_LINKS) == expected_markdown_links
 
 
 def test_regex_find_url():
     """test_regex_find function tests regex_find() functionality."""
-    for index, elem in enumerate(utils.regex_find_url(expected_markdown_links)):
+    for index, elem in enumerate(utils.regex_get_url(expected_markdown_links)):
         assert f"{elem}" == expected_urls[index]
-    assert utils.regex_find_url(expected_markdown_links) == expected_urls
+    assert utils.regex_get_url(expected_markdown_links) == expected_urls
 
 
 def test_build_reply_text():
@@ -59,8 +59,8 @@ def test_build_reply_text():
 3º Link: [First Option](https://12ft.io/https://praw.readthedocs.io/en/stable/); [Second Option](https://www.removepaywall.com/https://praw.readthedocs.io/en/stable/)\n\
 \n"
     expected1 = f"{templates.SELFTEXT_TEMPLATE}{expected_links1}{templates.BYE_BYE_TEMPLATE}"
-    no_link_list1 = utils.regex_find_markdown_link(SELFTEXT_WITH_THREE_LINKS)
-    link_list1 = utils.regex_find_url(no_link_list1)
+    no_link_list1 = utils.regex_get_markdown_links(SELFTEXT_WITH_THREE_LINKS)
+    link_list1 = utils.regex_get_url(no_link_list1)
     reply_text1 = utils.build_reply_text(link_list1)
     assert reply_text1 == expected1
 
@@ -73,13 +73,13 @@ def test_build_reply_text():
 I verified that there are more links, but I can only bypass three. Good luck with the rest.\n\
 \n"
     expected2 = f"{templates.SELFTEXT_TEMPLATE}{expected_links2}{templates.BYE_BYE_TEMPLATE}"
-    no_link_list2 = utils.regex_find_markdown_link(SELFTEXT_WITH_FOUR_LINKS)
-    link_list2 = utils.regex_find_url(no_link_list2)
+    no_link_list2 = utils.regex_get_markdown_links(SELFTEXT_WITH_FOUR_LINKS)
+    link_list2 = utils.regex_get_url(no_link_list2)
     reply_text2 = utils.build_reply_text(link_list2)
     assert reply_text2 == expected2
 
-    no_link_list3 = utils.regex_find_markdown_link(SELFTEXT_WITHOUT_LINKS)
-    link_list3 = utils.regex_find_url(no_link_list3)
+    no_link_list3 = utils.regex_get_markdown_links(SELFTEXT_WITHOUT_LINKS)
+    link_list3 = utils.regex_get_url(no_link_list3)
     reply_text3 = utils.build_reply_text(link_list3)
     assert reply_text3 == templates.NO_LINKS_TEMPLATE
 
