@@ -44,15 +44,18 @@ def define_reply(item: Comment) -> str:
         # is_self is true when submission have self_text.
         if parent_submission.is_self:
             link_list = utils.get_links(parent_submission.selftext)
-            return utils.build_reply_text(link_list)
+            reply_text = utils.build_reply_text(link_list)
 
-        return utils.build_reply_text([ *parent_submission.url ])
+        else:
+            reply_text = utils.build_reply_text([ *parent_submission.url ])
 
     # t1 means comment
-    else: # if parent_type == "t1":
+    if parent_type == "t1":
         parent_comment = r.reddit_instance.comment(parent_id)
         link_list = utils.get_links(parent_comment.selftext)
-        return utils.build_reply_text(link_list)
+        reply_text =utils.build_reply_text(link_list)
+
+    return reply_text
 
 
 def reply(item: Comment, message: str) -> None:
