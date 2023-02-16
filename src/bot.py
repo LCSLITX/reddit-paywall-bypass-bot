@@ -8,12 +8,14 @@ from praw.models import Comment
 from src import templates
 from src import utils
 
+
 config = configparser.ConfigParser()
 config.read('praw.ini')
 
 
-print("DEBUG_MODE:", config.get("DEFAULT", "REDDIT_BOT_DEBUG_MODE", vars=os.environ))
-if config.get("DEFAULT", "REDDIT_BOT_DEBUG_MODE", vars=os.environ) == "True":
+debug_mode = config.get("DEFAULT", "REDDIT_BOT_DEBUG_MODE", vars=os.environ)
+print("REDDIT_BOT_DEBUG_MODE:", debug_mode)
+if debug_mode == "True":
     utils.debug_mode()
 
 
