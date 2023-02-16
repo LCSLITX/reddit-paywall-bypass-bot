@@ -49,7 +49,7 @@ def define_reply(item: Comment) -> str:
         return utils.build_reply_text([ *parent_submission.url ])
 
     # t1 means comment
-    if parent_type == "t1":
+    else: # if parent_type == "t1":
         parent_comment = r.reddit_instance.comment(parent_id)
         link_list = utils.get_links(parent_comment.selftext)
         return utils.build_reply_text(link_list)
