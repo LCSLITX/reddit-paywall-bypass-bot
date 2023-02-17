@@ -9,7 +9,7 @@ from src import reddit as r
 
 def handle_stream() -> None:
     """handle_stream function implements the function which
-    will handle the inbox stream of mentions and reply to them.
+    will handle the inbox stream of mentions.
     """
     for item in r.reddit_instance.inbox.stream():
         # if item is not a mention, do nothing.
@@ -47,19 +47,21 @@ def define_reply(item: Comment) -> str:
             reply_text = utils.build_reply_text(link_list)
 
         else:
-            reply_text = utils.build_reply_text([ *parent_submission.url ])
+            reply_text = utils.build_reply_text([ parent_submission.url ])
 
     # t1 means comment
     if parent_type == "t1":
         parent_comment = r.reddit_instance.comment(parent_id)
-        link_list = utils.get_links(parent_comment.selftext)
+        link_list = utils.get_links(parent_comment.body)
         reply_text =utils.build_reply_text(link_list)
 
     return reply_text
 
 
-def reply(item: Comment, message: str) -> None:
+def reply(item: Comment, message: str) -> Comment:
     """reply function receives an item (submission or comment) and reply to it."""
     res = item.reply(message)
     if not res is None:
         print("[REPLY_ID]:", res)
+        return res
+    return res
