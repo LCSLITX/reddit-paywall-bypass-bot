@@ -1,5 +1,6 @@
 """Module templates. Provides all templates to be used by BOT."""
 
+# pylint: disable=line-too-long
 
 # the indentation is intentional.
 # The string should not use tabs to not broke markdown text when sent with request.
@@ -8,12 +9,12 @@ I do provide alternative links so you can read your news or articles without tho
 Here are your links:\n\n"
 
 
-# pylint: disable-next=line-too-long
 MANY_LINKS_TEMPLATE = "I verified that there are more links, but I can only bypass three. Good luck with the rest.\n\n"
 
 
 BYE_BYE_TEMPLATE = "Beep beep. Bye.\n\n\
-[Source code](https://github.com/lucassauro/reddit-paywall-bypass-bot) \
+[How to use](https://www.reddit.com/user/PaywallBypassBOT/comments/113xrp8/how_to_use_it/) \
+| [Source code](https://github.com/lucassauro/reddit-paywall-bypass-bot) \
 | [Report a bug](https://github.com/lucassauro/reddit-paywall-bypass-bot/issues/new) \
 | [Feedback](https://www.reddit.com/message/compose/?to=PaywallBypassBOT)"
 
@@ -21,11 +22,12 @@ BYE_BYE_TEMPLATE = "Beep beep. Bye.\n\n\
 NO_LINKS_TEMPLATE = "Beep Beep. I'm a BOT who doesn't like Paywalls. 🤖\n\n\
 I do provide alternative links so you can read your news or articles without those annoying things.\n\n\
 Unfortunately, I didn't find any links to bypass.\n\n"
+# pylint: enable=line-too-long
 
 
 # PAYWALL BYPASS PROVIDERS
-FIRST_OPTION = "[First Option](https://12ft.io/{})"
-SECOND_OPTION = "[Second Option](https://www.removepaywall.com/{})"
+FIRST_OPTION = "[First Option](https://www.removepaywall.com/{})"
+SECOND_OPTION = "[Second Option](https://12ft.io/{})"
 
 
 # REGEX PATTERNS
