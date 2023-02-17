@@ -43,7 +43,7 @@ def test_define_reply():
 
     # deleted comment
     # https://www.reddit.com/r/undefined/comments/113xrp8/comment/j8szj5q/?utm_source=share&utm_medium=web2x&context=3
-    expected5 = f"{templates.NO_LINKS_TEMPLATE}"
+    expected5 = f"{templates.NO_LINKS_TEMPLATE}{templates.BYE_BYE_TEMPLATE}"
     item5 = Comment(r.read_only_reddit_instance, "j8szj5q")
     string5 = bot.define_reply(item5)
     assert string5 == expected5

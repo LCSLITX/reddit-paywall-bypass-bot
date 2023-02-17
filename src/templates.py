@@ -12,13 +12,15 @@ Here are your links:\n\n"
 MANY_LINKS_TEMPLATE = "I verified that there are more links, but I can only bypass three. Good luck with the rest.\n\n"
 
 
-BYE_BYE_TEMPLATE = "Beep beep. Bye."
+BYE_BYE_TEMPLATE = "Beep beep. Bye.\n\n\
+[Source code](https://github.com/lucassauro/reddit-paywall-bypass-bot) \
+| [Report a bug](https://github.com/lucassauro/reddit-paywall-bypass-bot/issues/new) \
+| [Feedback](https://www.reddit.com/message/compose/?to=PaywallBypassBOT)"
 
 
 NO_LINKS_TEMPLATE = "Beep Beep. I'm a BOT who doesn't like Paywalls. 🤖\n\n\
 I do provide alternative links so you can read your news or articles without those annoying things.\n\n\
-Unfortunately, I didn't find any links to bypass.\n\n\
-Beep beep. Bye."
+Unfortunately, I didn't find any links to bypass.\n\n"
 
 
 # PAYWALL BYPASS PROVIDERS
