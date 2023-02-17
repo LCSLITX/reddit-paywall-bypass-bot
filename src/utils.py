@@ -41,16 +41,18 @@ def regex_redundant(self_text: str) -> list[str]:
 def build_reply_text(link_list: list[str]) -> str:
     """build_reply_text function builds a string to be used as a reply text."""
     if len(link_list) == 0:
-        return templates.NO_LINKS_TEMPLATE
+        reply_text = templates.NO_LINKS_TEMPLATE
 
-    reply_text = templates.REPLY_TEMPLATE
+    else:
+        reply_text = templates.REPLY_TEMPLATE
 
-    for index, url in enumerate(link_list):
-        if index >= 3:
-            reply_text += templates.MANY_LINKS_TEMPLATE
-            break
-        # pylint: disable-next=line-too-long
-        reply_text += f"{index + 1}º Link: {templates.FIRST_OPTION.format(url)}; {templates.SECOND_OPTION.format(url)}\n\n"
+        for index, url in enumerate(link_list):
+            if index >= 3:
+                reply_text += templates.MANY_LINKS_TEMPLATE
+                break
+            # pylint: disable-next=line-too-long
+            reply_text += f"{index + 1}º Link: {templates.FIRST_OPTION.format(url)}; {templates.SECOND_OPTION.format(url)}\n\n"
+
     reply_text += templates.BYE_BYE_TEMPLATE
     return reply_text
 

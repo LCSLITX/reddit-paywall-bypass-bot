@@ -64,7 +64,8 @@ def test_build_reply_text():
     reply_text2 = utils.build_reply_text(link_list2)
     assert reply_text2 == expected2
 
+    expected3 = f"{templates.NO_LINKS_TEMPLATE}{templates.BYE_BYE_TEMPLATE}"
     no_link_list3 = utils.regex_get_markdown_links(SELFTEXT_WITHOUT_LINKS)
     link_list3 = utils.regex_get_url(no_link_list3)
     reply_text3 = utils.build_reply_text(link_list3)
-    assert reply_text3 == templates.NO_LINKS_TEMPLATE
+    assert reply_text3 == expected3
