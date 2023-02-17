@@ -13,7 +13,8 @@ MANY_LINKS_TEMPLATE = "I verified that there are more links, but I can only bypa
 
 
 BYE_BYE_TEMPLATE = "Beep beep. Bye.\n\n\
-[Source code](https://github.com/lucassauro/reddit-paywall-bypass-bot) \
+[How to use](https://www.reddit.com/user/PaywallBypassBOT/comments/113xrp8/how_to_use_it/) \
+| [Source code](https://github.com/lucassauro/reddit-paywall-bypass-bot) \
 | [Report a bug](https://github.com/lucassauro/reddit-paywall-bypass-bot/issues/new) \
 | [Feedback](https://www.reddit.com/message/compose/?to=PaywallBypassBOT)"
 
