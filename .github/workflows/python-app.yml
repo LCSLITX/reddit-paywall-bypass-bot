@@ -33,5 +33,11 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
+      env: 
+        REDDIT_BOT_CLIENT_ID: ${{ secrets.REDDIT_BOT_CLIENT_ID }}
+        REDDIT_BOT_CLIENT_SECRET: ${{ secrets.REDDIT_BOT_CLIENT_SECRET }}
+        REDDIT_BOT_USERNAME: ${{ secrets.REDDIT_BOT_USERNAME }}
+        REDDIT_BOT_PASSWORD: ${{ secrets.REDDIT_BOT_PASSWORD }}
+        REDDIT_BOT_DEBUG_MODE: ${{ vars.REDDIT_BOT_DEBUG_MODE }}
       run: |
         python3 -m pytest tests/*test.py -vv
