@@ -1,6 +1,9 @@
 # https://stackoverflow.com/a/43566158/15077313
 SHELL := /bin/zsh
 
+freeze:
+	pip freeze | cat > requirements.txt
+
 execute_pylint: 
 	python3 -m pylint --rcfile=.pylintrc --verbose --clear-cache-post-run=y src/*.py tests/*.py
 
