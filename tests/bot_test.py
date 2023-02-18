@@ -47,3 +47,11 @@ def test_define_reply():
     item5 = Comment(r.read_only_reddit_instance, "j8szj5q")
     string5 = bot.define_reply(item5)
     assert string5 == expected5
+
+
+    # own comment
+    # https://www.reddit.com/r/brdev/comments/1151rhx/comment/j8z5n0k/?utm_source=share&utm_medium=web2x&context=3
+    expected5 = ""
+    item5 = Comment(r.read_only_reddit_instance, "j8z5n0k")
+    string5 = bot.define_reply(item5)
+    assert string5 == expected5
