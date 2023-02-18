@@ -52,6 +52,8 @@ def define_reply(item: Comment) -> str:
     # t1 means comment
     if parent_type == "t1":
         parent_comment = r.reddit_instance.comment(parent_id)
+        if parent_comment.author == r.USERNAME:
+            return ""
         link_list = utils.get_links(parent_comment.body)
         reply_text =utils.build_reply_text(link_list)
 
@@ -60,6 +62,8 @@ def define_reply(item: Comment) -> str:
 
 def reply(item: Comment, message: str) -> Comment:
     """reply function receives an item (submission or comment) and reply to it."""
+    if message == "":
+        return item
     res = item.reply(message)
     if not res is None:
         print("[REPLY_ID]:", res)
