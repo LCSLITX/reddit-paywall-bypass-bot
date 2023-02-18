@@ -41,9 +41,6 @@ def define_reply(item: Comment) -> str:
     # t3 means submission
     if parent_type == "t3":
         parent_submission = r.reddit_instance.submission(parent_id)
-
-        if parent_submission.author == "PaywallBypassBOT":
-            return ""
         # is_self is true when submission have self_text.
         if parent_submission.is_self:
             link_list = utils.get_links(parent_submission.selftext)
@@ -55,10 +52,8 @@ def define_reply(item: Comment) -> str:
     # t1 means comment
     if parent_type == "t1":
         parent_comment = r.reddit_instance.comment(parent_id)
-
         if parent_comment.author == "PaywallBypassBOT":
             return ""
-
         link_list = utils.get_links(parent_comment.body)
         reply_text =utils.build_reply_text(link_list)
 
