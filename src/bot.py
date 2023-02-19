@@ -41,6 +41,8 @@ def define_reply(item: Comment) -> str:
     # t3 means submission
     if parent_type == "t3":
         parent_submission = r.reddit_instance.submission(parent_id)
+        if parent_submission.author == r.USERNAME:
+            return ""
         # is_self is true when submission have self_text.
         if parent_submission.is_self:
             link_list = utils.get_links(parent_submission.selftext)
