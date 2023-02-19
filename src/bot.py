@@ -24,9 +24,8 @@ def handle_stream() -> None:
             print(exception)
             continue
         except praw.exceptions.RedditAPIException as exception:
-            # for subexception in exception.items:
-            #     print(subexception)
-            print(exception)
+            for subexception in exception.items:
+                print(subexception)
             reply(item, reply_text)
         except praw.exceptions.ClientException as exception:
             print(exception)
@@ -57,7 +56,7 @@ def define_reply(item: Comment) -> str:
         if parent_comment.author == r.USERNAME:
             return ""
         link_list = utils.get_links(parent_comment.body)
-        reply_text =utils.build_reply_text(link_list)
+        reply_text = utils.build_reply_text(link_list)
 
     return reply_text
 

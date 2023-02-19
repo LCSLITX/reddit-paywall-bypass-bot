@@ -57,7 +57,6 @@ def test_define_reply():
 
     # own submission
     # https://www.reddit.com/r/brdev/comments/1151rhx/comment/j8z5hc2/?utm_source=share&utm_medium=web2x&context=3
-    expected5 = f"{templates.REPLY_TEMPLATE}{tt.EXPECTED_LINKS2}{templates.BYE_BYE_TEMPLATE}"
     item6 = Comment(r.read_only_reddit_instance, "j8z5hc2")
     string6 = bot.define_reply(item6)
     assert string6 == expected5
